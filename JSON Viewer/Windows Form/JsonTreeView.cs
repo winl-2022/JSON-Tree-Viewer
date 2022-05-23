@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Alex75.JsonViewer.BusinessObjects;
+using Newtonsoft.Json.Linq;
+using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json.Linq;
-using Alex75.JsonViewer.BusinessObjects;
-using System.Resources;
-using System.Collections;
 
 namespace Alex75.JsonViewer.WindowsForm
 {
-    [Browsable(false)]
-    [DesignTimeVisible(false)]
+    [Browsable(true)]
+    [DesignTimeVisible(true)]
     [Designer("JSON Tree View")]
     public class JsonTreeView : TreeView
     {
@@ -53,7 +46,7 @@ namespace Alex75.JsonViewer.WindowsForm
                 }
             }
 
-            this.ImageList = treeImages;            
+            this.ImageList = treeImages;
         }
 
         public void ShowJson(string jsonString)
@@ -65,7 +58,7 @@ namespace Alex75.JsonViewer.WindowsForm
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         private void LoadTree(JObject json)
         {
-            Nodes.Clear();            
+            Nodes.Clear();
 
             var rootNode = new JsonTreeNode(NodeType.Object, "(root)");
             Nodes.Add(rootNode);
@@ -119,35 +112,35 @@ namespace Alex75.JsonViewer.WindowsForm
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.treeContextMenu.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // treeContextMenu
-            // 
+            //
             this.treeContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.treeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.expandAllMenuItem});
             this.treeContextMenu.Name = "treeContextMenu";
             this.treeContextMenu.Size = new System.Drawing.Size(147, 30);
             this.treeContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.treeContextMenu_Opening);
-            // 
+            //
             // expandAllMenuItem
-            // 
+            //
             this.expandAllMenuItem.Name = "expandAllMenuItem";
             this.expandAllMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.expandAllMenuItem.ShowShortcutKeys = false;
             this.expandAllMenuItem.Size = new System.Drawing.Size(146, 26);
             this.expandAllMenuItem.Text = "&Expand All";
-            // 
+            //
             // statusStrip1
-            // 
+            //
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(200, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
-            // 
+            //
             // JsonTreeView
-            // 
+            //
             this.ContextMenuStrip = this.treeContextMenu;
             this.FullRowSelect = true;
             this.treeContextMenu.ResumeLayout(false);
@@ -160,7 +153,7 @@ namespace Alex75.JsonViewer.WindowsForm
             get { return base.SelectedNode as JsonTreeNode; }
             set { base.SelectedNode = value; ; }
         }
-        
+
         #region UI events
 
         private void this_AfterSelect(object sender, TreeViewEventArgs e)
@@ -195,13 +188,13 @@ namespace Alex75.JsonViewer.WindowsForm
         }
 
         private void expandAllMenuItem_Click(object sender, EventArgs e)
-        {   
+        {
             if (SelectedNode != null)
             {
                 BeginUpdate();
                 SelectedNode.ExpandAll();
                 EndUpdate();
-            }       
+            }
         }
 
         #endregion
