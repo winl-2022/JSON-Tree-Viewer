@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsForm
 {
+    [SuppressMessage(
+        "Style",
+        "IDE1006:Naming Styles",
+        Justification = "allow event handler method name begin with lower-caption letter",
+        Scope = "class",
+        Target = "WindowsForm.MainForm")]
     public partial class MainForm : Form
     {
         public MainForm()
@@ -23,7 +23,7 @@ namespace WindowsForm
 
 
         private void LoadJson(string file)
-        {       
+        {
             try
             {
                 var json = File.ReadAllText(file);

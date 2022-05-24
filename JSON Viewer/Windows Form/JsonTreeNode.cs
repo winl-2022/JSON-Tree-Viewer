@@ -30,6 +30,6 @@ namespace Alex75.JsonViewer.WindowsForm
             this.textWhenSelected = textWhenSelected ?? text;
         }
 
-        private string textWhenSelected;
+        private readonly string textWhenSelected;
     }
 }

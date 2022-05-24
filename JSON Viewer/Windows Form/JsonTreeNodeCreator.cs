@@ -10,8 +10,7 @@ namespace Alex75.JsonViewer.WindowsForm
         {
             NodeType type;
             string text;
-            string textWhenSelected = null;
-
+            string textWhenSelected;
             if (item.Type == JTokenType.Object || item.Type == JTokenType.Array)
             {
                 text = property;
@@ -19,7 +18,6 @@ namespace Alex75.JsonViewer.WindowsForm
             }
             else
             {
-                type = NodeType.Value;
                 string value = item.ToString();
                 text = property == null ?
                     value :
@@ -31,8 +29,10 @@ namespace Alex75.JsonViewer.WindowsForm
                 item.Type == JTokenType.Array ? NodeType.Array :
                 NodeType.Value;
 
-            var node = new JsonTreeNode(type, text, textWhenSelected);
-            node.ImageKey = item.Type.ToString();
+            var node = new JsonTreeNode(type, text, textWhenSelected)
+            {
+                ImageKey = item.Type.ToString()
+            };
             node.SelectedImageKey = node.ImageKey;
 
             return node;

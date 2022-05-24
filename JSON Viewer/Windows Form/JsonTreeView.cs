@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -10,6 +11,12 @@ namespace Alex75.JsonViewer.WindowsForm
     [Browsable(true)]
     [DesignTimeVisible(true)]
     [Designer("JSON Tree View")]
+    [SuppressMessage(
+        "Style",
+        "IDE1006:Naming Styles",
+        Justification = "allow event handler method name begin with lower-caption letter",
+        Scope = "class",
+        Target = "Alex75.JsonViewer.WindowsForm.JsonTreeView")]
     public class JsonTreeView : TreeView
     {
         private TreeNode previouslySelectedNode = null;
@@ -31,8 +38,10 @@ namespace Alex75.JsonViewer.WindowsForm
 
         private void LoadImgaeList()
         {
-            ImageList treeImages = new ImageList();
-            treeImages.ImageSize = new Size(16, 16);
+            ImageList treeImages = new ImageList
+            {
+                ImageSize = new Size(16, 16)
+            };
             ComponentResourceManager images = new ComponentResourceManager(typeof(Resources.NodeImages));
             foreach (var type in Enum.GetNames(typeof(JTokenType)))
             {
@@ -158,7 +167,7 @@ namespace Alex75.JsonViewer.WindowsForm
 
         private void this_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            // restore previous seelcted node text and store the next
+            // restore previous selected node text and store the next
             if (previouslySelectedNode != null)
             {
                 previouslySelectedNode.Text = previouslySelectedNodeText;
